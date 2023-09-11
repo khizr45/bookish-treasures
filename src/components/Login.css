@@ -1,0 +1,69 @@
+.main-container{
+    width: 100%;
+    height: 100vh;
+    background-color: #a05d35;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.login-cover{
+   width: 51%;
+   height: 417px;
+}
+.right-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 80px;
+}
+.Containers{
+    width: 60%;
+    height: 70vh;
+    border: 2px solid #eee4d0;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    background-color: #cfa67c;
+    margin-bottom: 60px;
+}
+.right-container input {
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #eee4d0;
+    color:#3c2e27 ;
+    border : 1px solid #eee4d0;
+    padding : 10px;
+    border-radius: 5px;
+}
+.log-btn{
+    background-color: #3c2e27;
+    color: #cfa67c;
+    border : 1px solid #eee4d0;
+    padding : 10px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-weight:600;
+}
+.fp{
+    color: #3c2e27;
+    margin-top: 10px;
+}
+.sign-up{
+    margin-top: 150px;    
+    border : 1px solid #cfa67c;
+    padding : 10px;
+    border-radius: 5px;
+    width: 100%;
+    cursor: pointer;
+    font-weight:600;
+    background-color:#cfa67c;
+    color:#3c2e27 ;
+}
+.Head{
+    display: flex;
+    align-self:flex-end;
+    margin-right: 40px;
+    margin-bottom: 50px;
+}

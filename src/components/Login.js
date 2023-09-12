@@ -28,7 +28,7 @@ function Login() {
   }
   return (
     <div className='main-container'>
-        {/* <h2 className='Head'>Bookish-Treasure</h2> */}
+        {/* <img src='images/logo_bt.jpg' className='Head' /> */}
         <div className={ElementClass}>
             <img src='images/login-cover2.jpeg' alt='' className='login-cover'/>
             <div className='right-container'>

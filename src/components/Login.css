@@ -1,7 +1,7 @@
 .main-container{
     width: 100%;
     height: 100vh;
-    background-color: #a05d35;
+    background-color: #a05d31;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,6 +16,7 @@
     flex-direction: column;
     align-items: center;
     margin-right: 80px;
+    margin-top: 2rem;
 }
 .Containers{
     width: 60%;
@@ -28,13 +29,14 @@
     margin-bottom: 60px;
 }
 .right-container input {
-    width: 100%;
+    width: 90%;
     margin-bottom: 10px;
     background-color: #eee4d0;
     color:#3c2e27 ;
     border : 1px solid #eee4d0;
     padding : 10px;
     border-radius: 5px;
+    outline: none;
 }
 .log-btn{
     background-color: #3c2e27;
@@ -51,7 +53,7 @@
     margin-top: 10px;
 }
 .sign-up{
-    margin-top: 150px;    
+    margin-top: 30px;    
     border : 1px solid #cfa67c;
     padding : 10px;
     border-radius: 5px;
@@ -66,4 +68,38 @@
     align-self:flex-end;
     margin-right: 40px;
     margin-bottom: 50px;
+}
+.Password-set{
+    display: flex;
+    justify-content: center;
+    background-color: #eee4d0;
+    color:#3c2e27 ;
+    height: 50px;
+    border : 1px solid #eee4d0;
+    border-radius: 5px;
+    height: 33px;
+    margin-bottom: 2rem;
+}
+.sp{
+    background-color: #eee4d0;
+    color:#3c2e27 ;
+    border : 1px solid #eee4d0;
+    border-radius: 5px;
+    padding: 0;
+    height: 33px;
+    font-size: small;  
+}
+.Password{
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #eee4d0;
+    color:#3c2e27 ;
+    border : 1px solid #eee4d0;
+    padding : 10px;
+    border-radius: 5px;
+    height: 30%;
+    outline: none;
+}
+.hide{
+    display: none;
 }

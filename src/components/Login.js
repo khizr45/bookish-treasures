@@ -28,7 +28,7 @@ function Login() {
   }
   return (
     <div className='main-container'>
-        {/* <img src='images/logo_bt.jpg' className='Head' /> */}
+        <Header/>
         <div className={ElementClass}>
             <img src='images/login-cover2.jpeg' alt='' className='login-cover'/>
             <div className='right-container'>
@@ -59,6 +59,15 @@ function Login() {
         </div>
     </div>
   )
+}
+export const Header = ()=>{
+
+  return <header>
+    <div className='head-container'>
+          <img src='images/logo_bt.jpg' className='Head' />
+        </div>
+  </header>
+
 }
 
 export default Login

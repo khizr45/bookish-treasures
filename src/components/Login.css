@@ -15,16 +15,28 @@
     position: relative;
 }
 .login-cover{
-   width: 51%;
-   height: 455px;
+    display: flex;
+    height: 28rem;
+    width: 27rem;
+   /* width: 51%; */
+   /* height: 455px; */
+}
+.login-cover img{
+    display: flex;
+    width: 100%;
+   /* width: 51%; */
+   /* height: 455px; */
 }
 .right-container{
+    min-height: 25rem;
+    margin: auto;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin-right: 5rem;
+    /* align-items: center; */
+    /* margin-right: 5rem; */
     margin-top: 2rem;
-    gap: 2rem;
+    /* gap: 2rem; */
+    justify-content: space-around;
 }
 .Containers{
     width: 60%;
@@ -33,13 +45,14 @@
     display: flex;
     align-items: center;
     /* align-self:center; */
-    justify-content:space-between;
-    justify-self: center;
+    /* justify-content:space-between; */
+    /* justify-self: center; */
     background-color: #cfa67c;
     margin: 4rem auto 0rem auto;
     position: relative;
+    /* gap: 3rem; */
 }
-.right-container  :nth-child(2){
+.Username,.FullName,.Email{
     width: 100%;
     margin-bottom: 10px;
     background-color: #eee4d0;
@@ -49,16 +62,7 @@
     border-radius: 5px;
     outline: none;
 }
-.right-container :nth-child(3){
-    width: 90%;
-    margin-bottom: 10px;
-    background-color: #eee4d0;
-    color:#3c2e27 ;
-    border : 1px solid #eee4d0;
-    padding : 10px;
-    border-radius: 5px;
-    outline: none;
-}
+
 .log-btn{
     background-color: #3c2e27;
     color: #cfa67c;
@@ -68,13 +72,20 @@
     width: 100%;
     cursor: pointer;
     font-weight:600;
+    transition: 0.32s ease;
+    border: 1px solid #3c2e27;
+}
+.log-btn:hover{
+    transition: 0.32s ease;
+    background-color: #cfa67c;
+    color: #3c2e27;
 }
 .fp{
     color: #3c2e27;
     margin-top: 10px;
 }
 .sign-up{
-    margin-top: 30px;    
+    /* margin-top: 30px;     */
     border : 1px solid #cfa67c;
     padding : 10px;
     border-radius: 5px;
@@ -84,42 +95,47 @@
     background-color:#cfa67c;
     color:#3c2e27 ;
 }
+
 .Head{
    object-fit: contain;
     aspect-ratio: 3/4;
     height: 15rem;
-    /* border: 2px solid red; */
+  
    
 }
+
 .Password-set{
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     background-color: #eee4d0;
     color:#3c2e27 ;
-    height: 50px;
+    height: 70px;
     border : 1px solid #eee4d0;
     border-radius: 5px;
-    height: 33px;
+    height: 37px;
     margin-bottom: 2rem;
 }
 .sp{
+    /* border: 1px solid red; */
     background-color: #eee4d0;
     color:#3c2e27 ;
     border : 1px solid #eee4d0;
     border-radius: 5px;
-    padding: 0;
-    height: 33px;
+    /* padding-right: 5px; */
+    /* height: 22px; */
     font-size: small;  
+    min-width: 34.5px;
 }
 .Password{
-    width: 90%;
-    margin-bottom: 10px;
+    width: 100%;
+    /* margin-bottom: 10px; */
     background-color: #eee4d0;
     color:#3c2e27 ;
     border : 1px solid #eee4d0;
-    padding : 10px;
+    padding : 16px 10px 10px 10px;
     border-radius: 5px;
-    height: 30%;
+    height: 38%;
+
     outline: none;
 }
 .hide{

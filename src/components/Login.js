@@ -30,7 +30,9 @@ function Login() {
     <div className='main-container'>
         <Header/>
         <div className={ElementClass}>
-            <img src='images/login-cover2.jpeg' alt='' className='login-cover'/>
+           <div className='login-cover'>
+            <img src='images/login-cover2.jpeg' alt='' />
+            </div>
             <div className='right-container'>
                 <h3>Login</h3>
                 <input className='Username' placeholder={Inputfield1} name='Username'></input>

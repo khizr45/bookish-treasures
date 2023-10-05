@@ -1,0 +1,129 @@
+.main-container{
+    background-color: #a05d31;
+    position: relative;
+}
+
+.nbar{
+    background-color: #cfa67c;
+    display: flex;
+    justify-content: space-between;
+    height: 10vh;
+}
+.nbarRight{
+    display: flex;
+    justify-content: space-between;
+}
+.dd-btn{
+    background-color: #cfa67c;
+    border: 0;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.dd-logo{
+    height: 35px;
+    width: 35px;
+}
+
+.SearchBar{
+    border: 0;
+    background-color: #cfa67c;
+    color: #3c2e27;
+    font-weight:bold;
+    border: 1px solid #cfa67c;
+    padding: 2px;
+    outline: none;
+    border-bottom: 2px solid #3c2e27;    
+    margin-bottom: 1rem;
+}
+
+.SearchBar::placeholder{
+    color: #3c2e27;
+    opacity: 1;
+}
+
+.LogS-btn{
+    background-color: #cfa67c;
+    color: #3c2e27;
+    font-weight: bold;
+    font-size: large;
+    border: 0;
+    margin-right: 2rem;
+}
+.cart-btn{
+    background-color: #cfa67c;
+    border: 0;
+    cursor: pointer;
+    margin-right: 1rem;
+    margin-top: 0.5rem;
+}
+.cart-logo{
+    height:50px ;
+    width: 50px;
+}
+
+.hide{
+    display: none;
+}
+
+.DDMenu{
+    width: 20vw;
+    height: 90vh;
+    background-color: #cfa67c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    border: #3c2e27 2px solid;
+    position: absolute;
+}
+
+.ddmenubtn{
+    height: 5vh;
+    background-color: #cfa67c;
+    color: #3c2e27;
+    border: 0;
+    text-align:left;
+    /* padding-left: 1rem; */
+    font-weight: bold;
+    font-size: larger;
+    cursor: pointer;
+    border-bottom: #3c2e27 2px solid;
+    margin-left: 1rem;
+}
+
+.OffersMain{
+    width: 100vw;
+    height: 50vh;
+    border: #3c2e27 2px solid;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden; /* Hide overflowing content */
+}
+
+@keyframes PrevOffer {
+    0%{
+        transform: translateX(0);
+        opacity: 1;
+    }
+
+    100%{
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+}
+
+.Offer{
+    width: 100%;
+    height: 100%;
+    animation-duration: 4s; /* Duration of the animation */
+    animation-timing-function: ease-in-out; /* Timing function for smooth animation */
+    animation-fill-mode: both;
+    opacity: 0;
+    animation-name: PrevOffer;
+    animation-iteration-count:infinite;
+    animation-delay: 6s;
+}
+
+  
+

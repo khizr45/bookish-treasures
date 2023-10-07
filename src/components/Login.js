@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
 import './Login.css'
 
-function Login() {
+function Login(props) {
   const [Inputfield1,ChangeInputField1] = useState("UserName");
   const [Inputfield2,ChangeInputField2] = useState("Password");
   const [TypeInput,changeTypeInput] = useState("password");
@@ -27,7 +27,7 @@ function Login() {
     UpdateElementClass2("Containers hide");
   }
   return (
-    <div className='main-container'>
+    <div className={props.cName}>
         <Header/>
         <div className={ElementClass}>
            <div className='login-cover'>
@@ -40,7 +40,7 @@ function Login() {
                   <input className='Password' placeholder={Inputfield2} name='Password' type={TypeInput}></input>
                   <button className='sp' onClick={PassShow}>{Show_btn}</button>
                 </div>
-                <button className='log-btn'>Sign In</button>
+                <button className='log-btn' onClick={props.doHome}>Sign In</button>
                 <a href='' className='fp'>Forget Password / Contact Us</a>
                 <button className='sign-up' onClick={OpenSignUp}>SignUp</button>
             </div>
@@ -66,7 +66,7 @@ export const Header = ()=>{
 
   return <header>
     <div className='head-container'>
-          <img src='images/logo_bt.jpg' className='Head' />
+          <img src='images/logo_Login.jpg' className='Head' />
         </div>
   </header>
 

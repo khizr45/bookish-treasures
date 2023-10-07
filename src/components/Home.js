@@ -1,5 +1,6 @@
 import React,{useState , useEffect} from 'react'
 import './Home.css'
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
       <div className='OffersDiv'>
         <Offers />
       </div>
+      <div className='new-div'></div>
     </div>
   )
 }
@@ -50,18 +52,20 @@ export const NavBar = () => {
 }
 
 export const Offers = () => {
-  const [OfferNow,UpdateOffer] = useState(0)
-  var offersPost = ['images/Offer1.jpg','images/Offer2.jpg','images/Offer3.jpg','images/Offer4.jpg']
-    setTimeout( () => {
-      if(OfferNow === 3){
-        UpdateOffer(0);
+  var offers = ['images/Offer1.jpg','images/Offer2.jpg','images/Offer3.jpg','images/Offer4.jpg']
+  const [offerNow , setOfferNow] = useState(0)
+
+  function NewOffer(){
+      if(offerNow+1 === offers.length){
+        setOfferNow(0)
       }else{
-        UpdateOffer(OfferNow+1);
+        setOfferNow(offerNow+1)
       }
-    },10000)
+  }
   return <offers>
     <div className='OffersMain'>
-      <img src={offersPost[OfferNow]} className='Offer' id='off'/>
+      <img src={offers[offerNow]} className='Offer' id='off'/>
+      <button className='Slider-Btn' onClick={NewOffer}><ArrowForwardIcon fontSize='large' /></button>
     </div>
   </offers>
 }

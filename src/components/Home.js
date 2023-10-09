@@ -73,7 +73,7 @@ export const NavBar = (props) => {
   }
   return <navbar>
     <div className='nbar'>
-      <img src='images/logo_bt_Home.jpg' className='dd-btn' />
+      <a href='bookish-treasures.vercel.app'><img src='images/logo_bt_Home.jpg' className='dd-btn' /></a>
       <input className='SearchBar' placeholder='Search'></input>
       <div className='nbarRight'>
         <button className='LogS-btn' onClick={props.LogPage}>Login/SignUp</button>

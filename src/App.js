@@ -24,7 +24,7 @@ function App() {
 
   function BkPg(Isrc , Ititle , Iauthor , Iprice){
     setShowHome("hide");
-    setPg("main-container")
+    setPg("main-con")
     setSrc(Isrc)
     setTitle(Ititle)
     setAuthor(Iauthor)

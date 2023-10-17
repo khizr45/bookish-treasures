@@ -1,9 +1,10 @@
 .main-con{
     background-color: #eee4d0;
+    flex-wrap: wrap;
 }
 
 .book-img{
-    height: 90%;
+    height: 60vh;
     width: 20%;
     border: #3c2e27 3px solid;
 }
@@ -22,6 +23,7 @@
 
 .book-prop{
     width: 100%;
+    height: 65vh;
     padding: 2%;
 }
 
@@ -66,4 +68,72 @@
 .minus:hover , .plus:hover{
     color: #a05d31;
     transition: color 0.3s;
+}
+
+.AddCart-btn{
+    width: 20%;
+    height: 10%;
+    background-color: #3c2e27;
+    color: #eee4d0;
+    border: 0;
+    border-radius: 5px;
+    margin-top: 2rem;
+    font-size: large;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.AddCart-btn:hover{
+    background-color: #eee4d0;
+    color:#3c2e27;
+    border: #3c2e27 2px solid;
+    border-radius: 5px;
+}
+.aut{
+    color: #3c2e27;
+}
+
+.attr{
+    width: 100%;
+    height: 70%;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+}
+
+.desc{
+    background-color: #eee4d0;
+    color: #3c2e27;
+    font-weight: bold;
+    font-size: large;
+    padding: 1%;
+    border: 0;
+    height: 15%;
+    cursor: pointer;
+}
+
+.desc:hover{
+    background-color: #3c2e27;
+    border-radius: 5px;
+    color: #eee4d0;
+}
+
+.cr{
+    border-bottom:#a05d31 3px solid;
+    color:#a05d31;
+}
+
+.descrip{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+    margin-top: 2rem;
+    padding: 1%;
+    border: #3c2e27 2px solid;
+    border-radius: 5px;
+    width: 90%;
+    box-shadow: 2px 2px 5px #cfa67c;
+}
+
+.hide{
+    display: none;
 }

@@ -8,7 +8,9 @@ function Login(props) {
   const [Show_btn,change_show_btn] = useState("Show");
   const [ElementClass, UpdateElementClass] = useState("Containers");
   const [ElementClass2, UpdateElementClass2] = useState("Containers hide");
-  const[Input1,ChangeInput1] = useState("");
+  const [SignBtn , SetSignBtn] = useState("log-btn disabled"); 
+  const [chkUser , setUser] = useState("");
+  const [chkPass , setPass] = useState("");
   function PassShow(){
     if(TypeInput === "password"){
         changeTypeInput("");
@@ -26,6 +28,32 @@ function Login(props) {
     UpdateElementClass("Containers");
     UpdateElementClass2("Containers hide");
   }
+
+  function TakeUserName(e){
+    setUser(e.target.value)
+    if(chkPass != ""){
+      SetSignBtn("log-btn")
+    }else{
+      SetSignBtn("log-btn disabled")
+    }
+
+    if(chkUser.length === 1){
+      SetSignBtn("log-btn disabled")
+    }
+  }
+
+  function TakePassword(e){
+    setPass(e.target.value)
+    if(chkUser != ""){
+      SetSignBtn("log-btn")
+    }else{
+      SetSignBtn("log-btn disabled")
+    }
+
+    if(chkPass.length === 1){
+      SetSignBtn("log-btn disabled")
+    }
+  }
   return (
     <div className={props.cName}>
         <Header/>
@@ -35,12 +63,12 @@ function Login(props) {
             </div>
             <div className='right-container'>
                 <h3>Login</h3>
-                <input className='Username' placeholder={Inputfield1} name='Username'></input>
+                <input className='Username' placeholder={Inputfield1} name='Username' onChange={TakeUserName}></input>
                 <div className='Password-set'>
-                  <input className='Password' placeholder={Inputfield2} name='Password' type={TypeInput}></input>
+                  <input className='Password' placeholder={Inputfield2} name='Password' type={TypeInput} onChange={TakePassword}></input>
                   <button className='sp' onClick={PassShow}>{Show_btn}</button>
                 </div>
-                <button className='log-btn' onClick={props.doHome}>Sign In</button>
+                <button className={SignBtn} onClick={()=>props.doHome(SignBtn)}>Sign In</button>
                 <a href='' className='fp'>Forget Password / Contact Us</a>
                 <button className='sign-up' onClick={OpenSignUp}>SignUp</button>
             </div>

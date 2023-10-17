@@ -1,0 +1,69 @@
+.main-container{
+    background-color: #eee4d0;
+}
+
+.book-img{
+    height: 90%;
+    width: 20%;
+    border: #3c2e27 3px solid;
+}
+
+.book-dets{
+    display: flex;
+    margin-left: 2rem;
+    margin-top: 3rem;
+    height: 90%;
+}
+
+.title{
+    color: #3c2e27;
+    margin-bottom: 1rem;
+}
+
+.book-prop{
+    width: 100%;
+    padding: 2%;
+}
+
+.SR{
+    margin-top: 1rem;
+}
+
+.Price{
+    margin-top: 1rem;
+    color: #3c2e27;
+}
+
+.Iter{
+    width: 20%;
+    height: 15%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: #3c2e27 2px solid;
+    border-radius: 5px;
+    margin-top: 2rem;
+}
+
+.minus , .plus{
+    background-color: #eee4d0;
+    color: #3c2e27;
+    border: 0;
+    font-size: larger;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.minus{
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+}
+
+.plus{
+    margin-right: 1rem;
+    margin-top: 0.3rem;
+}
+.minus:hover , .plus:hover{
+    color: #a05d31;
+    transition: color 0.3s;
+}

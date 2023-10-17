@@ -17,45 +17,63 @@ function Home(props) {
       <div className='Books'>
         <BookBox title='Charlie And the Chocolate Factory' 
         imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'/>
+        Author = 'Roald Dahl'
+        LoadPage = {props.BookPage}
+        />
         <BookBox title='Harry Potter and the Deathly Hallows'
           Author = 'J. K. Rowling'
           imageSrc = 'images/Harry_Potter.png'
+          LoadPage = {props.BookPage}
         />
         <BookBox title='Charlie And the Chocolate Factory' 
         imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'/>
+        Author = 'Roald Dahl'
+        LoadPage = {props.BookPage}
+        />
         <BookBox title='Harry Potter and the Deathly Hallows'
           Author = 'J. K. Rowling'
           imageSrc = 'images/Harry_Potter.png'
+          LoadPage = {props.BookPage}
         />
         <BookBox title='Charlie And the Chocolate Factory' 
         imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'/>
+        Author = 'Roald Dahl'
+        LoadPage = {props.BookPage}
+        />
         <BookBox title='Harry Potter and the Deathly Hallows'
           Author = 'J. K. Rowling'
           imageSrc = 'images/Harry_Potter.png'
+          LoadPage = {props.BookPage}
         />
         <BookBox title='Charlie And the Chocolate Factory' 
         imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'/>
+        Author = 'Roald Dahl'
+        LoadPage = {props.BookPage}
+        />
         <BookBox title='Harry Potter and the Deathly Hallows'
           Author = 'J. K. Rowling'
           imageSrc = 'images/Harry_Potter.png'
+          LoadPage = {props.BookPage}
         />
         <BookBox title='Charlie And the Chocolate Factory' 
         imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'/>
+        Author = 'Roald Dahl'
+        LoadPage = {props.BookPage}
+        />
         <BookBox title='Harry Potter and the Deathly Hallows'
           Author = 'J. K. Rowling'
           imageSrc = 'images/Harry_Potter.png'
+          LoadPage = {props.BookPage}
         />
         <BookBox title='Charlie And the Chocolate Factory' 
         imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'/>
+        Author = 'Roald Dahl'
+        LoadPage = {props.BookPage}
+        />
         <BookBox title='Harry Potter and the Deathly Hallows'
           Author = 'J. K. Rowling'
           imageSrc = 'images/Harry_Potter.png'
+          LoadPage = {props.BookPage}
         />
         
       </div>
@@ -73,7 +91,7 @@ export const NavBar = (props) => {
   }
   return <navbar>
     <div className='nbar'>
-      <img src='images/logo_bt_Home.jpg' className='dd-btn' />
+      <a href='bookish-treasures.vercel.app'><img src='images/logo_bt_Home.jpg' className='dd-btn' /></a>
       <input className='SearchBar' placeholder='Search'></input>
       <div className='nbarRight'>
         <button className='LogS-btn' onClick={props.LogPage}>Login/SignUp</button>
@@ -105,7 +123,7 @@ export const Offers = () => {
 
 export const BookBox = (props) => {
   return <bookbox>
-    <div className='bb'>
+    <div className='bb' onClick={()=>props.LoadPage(props.imageSrc,props.title,props.Author,"price")}>
       <div className='image'>
         <img src={props.imageSrc} className='poster'/>
       </div>

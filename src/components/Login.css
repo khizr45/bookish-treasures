@@ -154,3 +154,8 @@ header{
     position: relative;
     height: 90px;
 }
+
+.disabled{
+    color: #3c2e27;
+    background-color: #cfa67c;
+}

@@ -7,7 +7,7 @@ import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
 
 function BookPg(props) {
-    const [cc , setCC] = useState("desc")
+    const [cc , setCC] = useState("desc cr")
     const [cc2 , setCC2] = useState("desc")
     const [pCC , setpCC] = useState("descrip")
     const [pCC2 , setpCC2] = useState("hide")
@@ -26,7 +26,7 @@ function BookPg(props) {
     }
   return (
     <div className={props.cName}>
-      <NavBar />
+      <NavBar LogPage = {props.doHome}/>
       <SecondaryNav />
       <div className='book-dets'>
         <img src={props.source} className='book-img' />
@@ -87,7 +87,7 @@ export const StarRating = () =>{
 export const Iterator = () => {
     const [value , setValue] = useState(1)
     function QtyLess(){
-        if(value != 0){
+        if(value != 1){
             setValue(value-1)
         }
     }

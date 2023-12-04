@@ -1,101 +1,74 @@
 import React,{useState , useEffect} from 'react'
 import './Home.css'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { useNavigate } from 'react-router-dom';
+import { useParams,useLocation } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { newUser } from '../app/features/Cart/CartSlice';
+import { UseSelector } from 'react-redux';
 
 function Home(props) {
+  const dispatch = useDispatch();
+  const [searchActive , setSearchActive] = useState("hide")
+  const [AllBook , setBooks] = useState([]);
+  const [searchOptions, setSearchOptions] = useState([]);
+  async function FindBooks(){
+    const response = await fetch("http://127.0.0.1:8000/getBooks");
+    const data = await response.json();
+    setBooks(data);
+  }
+  useEffect(()=>{
+    FindBooks();
+  },[])
   return (
     <div className={props.cName}>
-      <div className='navBarDiv'>
-        <NavBar LogPage = {props.showLog}/>
+      <div className=''>
+        <NavBar />
       </div>
       <div className='Sec-Nav'>
-        <SecondaryNav />
+        <SecondaryNav updateBooks={setBooks}/>
       </div>
       <div className='OffersDiv'>
         <Offers />
       </div>
       <div className='Books'>
-        <BookBox title='Charlie And the Chocolate Factory' 
-        imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'
-        LoadPage = {props.BookPage}
-        />
-        <BookBox title='Harry Potter and the Deathly Hallows'
-          Author = 'J. K. Rowling'
-          imageSrc = 'images/Harry_Potter.png'
-          LoadPage = {props.BookPage}
-        />
-        <BookBox title='Charlie And the Chocolate Factory' 
-        imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'
-        LoadPage = {props.BookPage}
-        />
-        <BookBox title='Harry Potter and the Deathly Hallows'
-          Author = 'J. K. Rowling'
-          imageSrc = 'images/Harry_Potter.png'
-          LoadPage = {props.BookPage}
-        />
-        <BookBox title='Charlie And the Chocolate Factory' 
-        imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'
-        LoadPage = {props.BookPage}
-        />
-        <BookBox title='Harry Potter and the Deathly Hallows'
-          Author = 'J. K. Rowling'
-          imageSrc = 'images/Harry_Potter.png'
-          LoadPage = {props.BookPage}
-        />
-        <BookBox title='Charlie And the Chocolate Factory' 
-        imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'
-        LoadPage = {props.BookPage}
-        />
-        <BookBox title='Harry Potter and the Deathly Hallows'
-          Author = 'J. K. Rowling'
-          imageSrc = 'images/Harry_Potter.png'
-          LoadPage = {props.BookPage}
-        />
-        <BookBox title='Charlie And the Chocolate Factory' 
-        imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'
-        LoadPage = {props.BookPage}
-        />
-        <BookBox title='Harry Potter and the Deathly Hallows'
-          Author = 'J. K. Rowling'
-          imageSrc = 'images/Harry_Potter.png'
-          LoadPage = {props.BookPage}
-        />
-        <BookBox title='Charlie And the Chocolate Factory' 
-        imageSrc = 'images/Charlie_and_the_Choclate_Factory.jpeg' 
-        Author = 'Roald Dahl'
-        LoadPage = {props.BookPage}
-        />
-        <BookBox title='Harry Potter and the Deathly Hallows'
-          Author = 'J. K. Rowling'
-          imageSrc = 'images/Harry_Potter.png'
-          LoadPage = {props.BookPage}
-        />
-        
+        {AllBook&&AllBook.map((items,index)=>{
+          return <BookBox key={index} title={items.title} imageSrc={items.image_source} Author={items.author}
+          price={items.price} ebook_price={(items.price)*0.3} isbn={items.book_isbn}/>
+        })}
       </div>
     </div>
   )
 }
 
 export const NavBar = (props) => {
-  const [DDMenuClass,UpdateDDMenu] = useState("hide")
+  const user = useSelector(state=>state.user);
+  const navigate = useNavigate();
+  const [DDMenuClass,UpdateDDMenu] = useState("hide");
+  const [content , setContent] = useState("");
   function OpenDDMenu(){
     UpdateDDMenu("DDMenu")
   }
   function CloseDDMenu(){
     UpdateDDMenu("hide");
   }
+  function Searches(e){
+      setContent(e.target.value)
+    }
+    function CheckUser(){
+      if(user === ""){
+        navigate("/user/Login");
+      }else{
+        navigate("/user/account");
+      }
+    }
   return <navbar>
     <div className='nbar'>
-      <a href='bookish-treasures.vercel.app'><img src='images/logo_bt_Home.jpg' className='dd-btn' /></a>
-      <input className='SearchBar' placeholder='Search'></input>
+      <a href='bookish-treasures.vercel.app'><img src='/images/logo_bt_Home.jpg' className='dd-btn' /></a>
+      <input className='SearchBar' placeholder='Search' onChange={Searches}></input>
       <div className='nbarRight'>
-        <button className='LogS-btn' onClick={props.LogPage}>Login/SignUp</button>
-        <button className='cart-btn'><img src='images/shop_cart_logo.png' className='cart-logo'/></button>
+        <button className='LogS-btn' onClick={CheckUser}>{user===""?"Login/SignUp":user}</button>
+        <button className='cart-btn' onClick={()=>{navigate("/user/Cart")}}><img src='/images/shop_cart_logo.png' className='cart-logo'/></button>
       </div>
       
     </div>
@@ -103,7 +76,7 @@ export const NavBar = (props) => {
 }
 
 export const Offers = () => {
-  var offers = ['images/Offer1.jpg','images/Offer2.jpg','images/Offer3.jpg','images/Offer4.jpg']
+  var offers = ['/images/Offer1.jpg','/images/Offer2.jpg','/images/Offer3.jpg','/images/Offer4.jpg']
   const [offerNow , setOfferNow] = useState(0)
 
   function NewOffer(){
@@ -122,53 +95,88 @@ export const Offers = () => {
 }
 
 export const BookBox = (props) => {
-  return <bookbox>
-    <div className='bb' onClick={()=>props.LoadPage(props.imageSrc,props.title,props.Author,"price")}>
+  const navigate = useNavigate();
+  return(
+    <div className='bb' onClick={()=>{navigate("/BkPg",{state:{ISBN:props.isbn}})}}>
       <div className='image'>
         <img src={props.imageSrc} className='poster'/>
       </div>
       <div className='book-Dets'>
         <h3 className='Title'>{props.title}</h3>
         <h7 className='Author'>by: {props.Author}</h7>
-        <h3 className='price'>price</h3>
-        <div className='addCart'>
-          <button className='add-btn'>Add To Cart</button>
-        </div>
+        <h3 className='price'>Physical: {props.price}</h3>
+        <h3 className='price'>PDF: {props.ebook_price}</h3>
       </div>
     </div>
-  </bookbox>
+  )
 }
 
-export const SecondaryNav = () => {
+export const SecondaryNav = (props) => {
+  const [selectGenre,setSelectGenre] = useState("");
+  const [selectAuthor , setSelectAuthor] = useState("");
+  const [Genres,setGenres] = useState([]);
+  const [Authors,setAuthors] = useState([]);
+  async function FilterGenre(e){
+    const value = e.target.value;
+    setSelectGenre(value);
+    if(value === "Genres"){
+
+    }else{
+      const response = await fetch("http://127.0.0.1:8000/book/filterGenre",{
+          method:'POST',
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({value,selectAuthor})
+      });
+      const data = await response.json();
+      props.updateBooks(data);
+    }
+  }
+  async function FilterAuthor(e){
+    const value = e.target.value;
+    setSelectAuthor(value);
+    if(value === "Authors"){
+
+    }else{
+      const response = await fetch("http://127.0.0.1:8000/book/filterAuthor",{
+          method:'POST',
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({value,selectGenre})
+      });
+      const data = await response.json();
+      props.updateBooks(data);
+    }
+  }
+  async function FindGenre(){
+    const response = await fetch("http://127.0.0.1:8000/book/genre");
+    const data = await response.json();
+    setGenres(data);
+  }
+  async function FindAuthors(){
+    const response = await fetch("http://127.0.0.1:8000/book/authors");
+    const data = await response.json();
+    setAuthors(data);
+  }
+  useEffect(()=>{
+    FindGenre();
+    FindAuthors();
+  },[])
   return <secondary>
     <div className='SN'>
-        <select className='Categories'>
-          <option>Categories</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
+        <select className='Categories'onChange={FilterGenre}>
+          <option>Genres</option>
+          {Genres&&Genres.map((items,index)=>{
+            return <option key={index}>{items.genre}</option>
+          })}
         </select>
-        <select className='Categories'>
-          <option>Categories</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-        </select>
-        <select className='Categories'>
-          <option>Categories</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-        </select>
-        <select className='Categories'>
-          <option>Categories</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
-          <option>Fiction</option>
+        <select className='Categories'onChange={FilterAuthor}>
+          <option>Authors</option>
+          {Authors&&Authors.map((items,index)=>{
+            return <option key={index}>{items.author}</option>
+          })}
         </select>
     </div>
   </secondary>

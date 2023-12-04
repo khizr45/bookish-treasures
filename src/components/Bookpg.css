@@ -1,4 +1,4 @@
-.main-con{
+.main-con-bkpg{
     background-color: #eee4d0;
     flex-wrap: wrap;
 }
@@ -10,6 +10,7 @@
 }
 
 .book-dets{
+    background-color: #eee4d0;
     display: flex;
     margin-left: 2rem;
     margin-top: 3rem;
@@ -22,8 +23,9 @@
 }
 
 .book-prop{
+    background-color: #eee4d0;
     width: 100%;
-    height: 65vh;
+    height: 75vh;
     padding: 2%;
 }
 
@@ -94,6 +96,7 @@
 }
 
 .attr{
+    background-color: #eee4d0;
     width: 100%;
     height: 70%;
     flex-wrap: wrap;
@@ -132,8 +135,44 @@
     border-radius: 5px;
     width: 90%;
     box-shadow: 2px 2px 5px #cfa67c;
+    color: #3c2e27;
 }
 
 .hide{
     display: none;
+}
+
+.Book-type-btns{
+    display: flex;
+    justify-content: space-between;
+    width: 25%;
+    margin-top: 1rem;
+    background-color:#eee4d0;
+    color: #eee4d0;
+    padding: 1rem;
+}
+.Book-type-btns button{
+    background-color: #3c2e27;
+    color: #eee4d0;
+    font-weight: bold;
+    font-size: large;
+    outline: none;
+    border: 1px solid #eee4d0;
+    border-radius: 20px;
+    width: 6rem;
+    margin: 0.5rem;
+}
+.review-btn{
+    background-color: blue;
+    color: #eee4d0;
+    border: #eee4d0;
+    border-radius: 20px;
+    padding: 1rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+.review-btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

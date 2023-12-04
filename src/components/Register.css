@@ -3,33 +3,32 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-.main-container{
+.main-con-register{
     background-color: #a05d31;
     position: relative;
 }
 
-.containers{
+.containers-register{
     min-height: 100vh;
     background-color: #a05d31;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.Mid{
+.Mid-register{
     border: 1px solid #eee4d0;
     width: 50%;
-    height: 70vh;
+    height: 85vh;
     margin-bottom: 4rem;
     display: flex;
     justify-content: space-between;
 }
-
-.Login-cover{
+.Login-cover-register{
     width: 50%;
     height: 100%;
 }
-.Right-Container{
+
+.Right-Container-register{
     width: 50%;
     height: 100%;
     background-color: #cfa67c;
@@ -38,16 +37,18 @@
     justify-content: center;
     align-items: center;
 }
-.Right-Container input{
+
+.Right-Container-register input{
     padding: 0.5rem;
     background-color: #eee4d0;
     border: 1px solid #eee4d0;
     outline: none;
     border-radius: 20px;
     width: 70%;
-    margin: 1rem;
+    margin: 0.5rem;
 }
-.Right-Container button{
+
+.Right-Container-register button{
     background-color: #3c2e27;
     outline: none;
     border: 1px solid #eee4d0;
@@ -58,24 +59,22 @@
     font-size: large;
     cursor: pointer;
     margin: 1rem;
+    font-weight: bold;
 }
-.Right-Container button:hover{
+
+.Right-Container-register button:hover{
     background-color: #cfa67c;
     color: #3c2e27;
     border: 1px solid #3c2e27;
 }
-.Right-Container h3{
+
+.Right-Container-register h3{
     color: #3c2e27;
     font-weight: bold;
 }
 
-.head-container{
-    display: flex;
-    margin: 0;
-    height: 80px;
-}
-header{
-    display: flex;
-    position: relative;
-    height: 90px;
+.back-log-btn{
+    background-color: #cfa67c;
+    color: #3c2e27;
+    border: 1px solid #3c2e27;
 }

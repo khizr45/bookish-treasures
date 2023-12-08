@@ -48,7 +48,15 @@ function Account_Info() {
             if(data[i].status === "P"){
                 pending.push(data[i]);
             }else if(data[i].status==="F" && data[i].type_id === 2){
-                ebook.push(data[i]);
+                let f = 0
+                ebook.forEach((elements,index)=>{
+                    if(ebook[index].book_isbn === data[i].book_isbn){
+                        f = 1;
+                    }
+                })
+                if(f === 0){
+                    ebook.push(data[i]);
+                }
             }
         }
         setEbookItems(ebook);

@@ -136,6 +136,7 @@
     width: 90%;
     box-shadow: 2px 2px 5px #cfa67c;
     color: #3c2e27;
+    cursor: pointer;
 }
 
 .hide{
@@ -175,4 +176,17 @@
     width: 100%;
     display: flex;
     justify-content: center;
+}
+.review-taker-div{
+    display: flex;
+    justify-content: center;
+}
+.submit-btn{
+    padding: 0.5rem;
+    background-color: darkblue;
+    border: 1px solid #eee4d0;
+    border-radius: 20px;
+    color: #eee4d0;
+    margin-left: 1rem;
+    cursor: pointer;
 }

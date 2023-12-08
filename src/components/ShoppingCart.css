@@ -17,12 +17,12 @@
     margin: 1rem;
 }
 .Ch-btn button{
-    background-color: #eee4d0;
-    color: #3c2e27;
+    background-color:darkgreen;
+    color: #eee4d0;
     font-size: large;
     font-weight: bold;
     padding: 1rem;
-    border: 1px solid #3c2e27;
+    border: 1px solid #eee4d0;
     border-radius: 20px;
     cursor: pointer;
 }

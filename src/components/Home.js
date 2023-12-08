@@ -21,12 +21,12 @@ function Home(props) {
     FindBooks();
   },[])
   return (
-    <div className={props.cName}>
-      <div className=''>
+    <div className="main-container-home-page">
+      <div className='nav-bar-div-hai'>
         <NavBar />
       </div>
       <div className='Sec-Nav'>
-        <SecondaryNav updateBooks={setBooks}/>
+        <SecondaryNav updateBooks={setBooks} reload={FindBooks}/>
       </div>
       <div className='OffersDiv'>
         <Offers />
@@ -34,7 +34,7 @@ function Home(props) {
       <div className='Books'>
         {AllBook&&AllBook.map((items,index)=>{
           return <BookBox key={index} title={items.title} imageSrc={items.image_source} Author={items.author}
-          price={items.price} ebook_price={(items.price)*0.3} isbn={items.book_isbn}/>
+          price={items.price} ebook_price={Math.round((items.price)*0.3)} isbn={items.book_isbn}/>
         })}
       </div>
     </div>
@@ -64,8 +64,8 @@ export const NavBar = (props) => {
     }
   return <navbar>
     <div className='nbar'>
-      <a href='bookish-treasures.vercel.app'><img src='/images/logo_bt_Home.jpg' className='dd-btn' /></a>
-      <input className='SearchBar' placeholder='Search' onChange={Searches}></input>
+      <img src='/images/logo_bt_Home.jpg' className='dd-btn' onClick={()=>{navigate("/")}}/>
+      {/* <input className='SearchBar' placeholder='Search' onChange={Searches}></input> */}
       <div className='nbarRight'>
         <button className='LogS-btn' onClick={CheckUser}>{user===""?"Login/SignUp":user}</button>
         <button className='cart-btn' onClick={()=>{navigate("/user/Cart")}}><img src='/images/shop_cart_logo.png' className='cart-logo'/></button>
@@ -112,15 +112,15 @@ export const BookBox = (props) => {
 }
 
 export const SecondaryNav = (props) => {
-  const [selectGenre,setSelectGenre] = useState("");
-  const [selectAuthor , setSelectAuthor] = useState("");
+  const [selectGenre,setSelectGenre] = useState("Genres");
+  const [selectAuthor , setSelectAuthor] = useState("Authors");
   const [Genres,setGenres] = useState([]);
   const [Authors,setAuthors] = useState([]);
   async function FilterGenre(e){
     const value = e.target.value;
     setSelectGenre(value);
-    if(value === "Genres"){
-
+    if(value === "Genres" && selectAuthor === "Authors"){
+      props.reload();
     }else{
       const response = await fetch("http://127.0.0.1:8000/book/filterGenre",{
           method:'POST',
@@ -136,8 +136,8 @@ export const SecondaryNav = (props) => {
   async function FilterAuthor(e){
     const value = e.target.value;
     setSelectAuthor(value);
-    if(value === "Authors"){
-
+    if(value === "Authors" && selectGenre === "Genres"){
+      props.reload();
     }else{
       const response = await fetch("http://127.0.0.1:8000/book/filterAuthor",{
           method:'POST',

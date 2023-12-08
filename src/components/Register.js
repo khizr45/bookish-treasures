@@ -7,6 +7,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
 
 function Register() {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^03[0-9][0-9]-\d{7}$/;
+    const phoneRegex2 = /^\+923[0-9]-\d{7}$/;
+
     const navigate = useNavigate();
     const [UN,setUN] = useState("");
     const [Pass,setPass] = useState("");
@@ -20,13 +24,22 @@ function Register() {
             toast.error("Please Complete The form",{
                 position:toast.POSITION.TOP_RIGHT,
             })
-        }else{
+        }else if(!phoneRegex.test(Pno) && !phoneRegex2.test(Pno)){
+            toast.error("Invalid Phone Number",{
+                position:toast.POSITION.TOP_RIGHT,
+            })
+        }else if(!emailRegex.test(Email)){
+            toast.error("Invalid Email",{
+                position:toast.POSITION.TOP_RIGHT,
+            })
+        }
+        else{
             if(Pass !== Pass2){
                 toast.error("Both Passwords donot match",{
                     position:toast.POSITION.TOP_RIGHT,
                 })
             }else{
-                if(Pass.length <=8){
+                if(Pass.length <8){
                     toast.warning("Password must be atlease 8 characters",{
                         position:toast.POSITION.TOP_RIGHT,
                     })

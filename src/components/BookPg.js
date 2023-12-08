@@ -97,6 +97,7 @@ function BookPg(props) {
         setCC2("desc")
         setpCC("descrip")
         setpCC2("hide")
+        setReviewTaking("hide");
     }
 
     function take2(){
@@ -106,19 +107,35 @@ function BookPg(props) {
         setpCC2("descrip")
     }
     function TakeBook(){
-        if(qt === 1){
+        if(qty === 0){
+            const book_dets ={Name: Title, Quantity:qt, Book_Type:"E",Isbn:ISBN,Price:Price,max_qty:qty};
+            dispatch(AddBook(book_dets));
+            toast.success("ebook added to cart",{
+                position:toast.POSITION.TOP_RIGHT,
+            })
+        }
+        else if(qt === 1){
             const book_type = prompt("What Type of book (E for PDF & P for Physical)");
             if(book_type === "e" || book_type === "E"){
                 const book_dets ={Name: Title, Quantity:qt, Book_Type:"E",Isbn:ISBN,Price:Price,max_qty:qty};
                 dispatch(AddBook(book_dets));
+                toast.success("ebook added to cart",{
+                    position:toast.POSITION.TOP_RIGHT,
+                })
             }else{
                 const book_dets ={Name: Title, Quantity:qt, Book_Type:"P",Isbn:ISBN,Price:Price,max_qty:qty};
                 dispatch(AddBook(book_dets));
+                toast.success("book added to cart",{
+                    position:toast.POSITION.TOP_RIGHT,
+                })
                 qt=1;
             }
         }else{
             const book_dets ={Name: Title, Quantity:qt, Book_Type:"P",Isbn:ISBN,Price:Price,max_qty:qty};
             dispatch(AddBook(book_dets));
+            toast.success("book added to cart",{
+                position:toast.POSITION.TOP_RIGHT,
+            })
             qt=1;
         }
     }
@@ -126,7 +143,6 @@ function BookPg(props) {
     <div className="main-con-bkpg">
         <ToastContainer />
       <NavBar />
-      <SecondaryNav />
       <div className='book-dets'>
         <img src={image_src} className='book-img' />
         <div className='book-prop'>
@@ -135,8 +151,8 @@ function BookPg(props) {
             <StarRating avg={avg_rating}/>
             <h2 className='Price'>Price: {Price}</h2>
             <h2 className='Price'>Ebook Price: {Price*0.3}</h2>
-            {qty?<Iterator max={qty}/>:<h4>Out Of Stock</h4>}
-            <button className='AddCart-btn' onClick={TakeBook} {...qty?"":"disabled"}>Add To Cart</button>
+            {qty?<Iterator max={qty}/>:<h4>Out Of Stock Only Ebook can be add to cart</h4>}
+            <button className='AddCart-btn' onClick={TakeBook}>Add To Cart</button>
         </div>
       </div>
       <div className='attr'>
@@ -151,7 +167,9 @@ function BookPg(props) {
             })}
       </div>
             <div className='review-btn-div'>
-                {user===""||flag===true?"":<button className='review-btn' onClick={()=>{setReviewTaking(pCC2)}}>Give Review</button>}
+                {user===""||flag===true?"":<button className={pCC2} onClick={()=>{setReviewTaking(pCC2)}}>Give Review</button>}
+            </div>
+            <div className='review-taker-div'>
                 <CustomerReviewTaking user={user} cc={reviewTaking} ccFunc = {setReviewTaking} i={ISBN} u={user} reload={FindBook}/>
             </div>
     </div>
@@ -244,7 +262,7 @@ export const CustomerReviewTaking=(props)=>{
                       }}
                 />
             </div>
-            <input type='description' placeholder='Review' rows={500} onChange={(e)=>{setReviewContent(e.target.value)}}/>
+            <textarea type='description' placeholder='Review' rows={5} cols={50} onChange={(e)=>{setReviewContent(e.target.value)}}/>
             <button className='submit-btn' onClick={SubmitReview}>Submit</button>
         </div>
     )

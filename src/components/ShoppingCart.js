@@ -50,6 +50,7 @@ function ShoppingCart() {
         const isbn = Book[index].isbn
         return isbn;
     }
+    const dateRegex = /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
     async function OrderPlace(){
         if(user === ""){
             alert("Please Login First");
@@ -58,7 +59,24 @@ function ShoppingCart() {
                 toast.error("Enter All details",{
                     position:toast.POSITION.TOP_RIGHT,
                 })
-            }else{
+            }else if(age==="VISA" && CardNum.length !== 16){
+              toast.error("Invalid Card Number",{
+                position:toast.POSITION.TOP_RIGHT
+              })
+            }else if(age==="VISA"&&CardCvv.length !== 3){
+              toast.error("Invalid CVV Number",{
+                position:toast.POSITION.TOP_RIGHT
+              })
+            }else if(age==="VISA"&& !dateRegex.test(ExpiryDate)){
+              toast.error("Invalid EXPIRY DATE",{
+                position:toast.POSITION.TOP_RIGHT
+              })
+            }else if(Book.length === 0){
+              toast.warning("Currently No Items in cart",{
+                position:toast.POSITION.TOP_RIGHT
+              })
+            }
+            else{
                 const response = await fetch("http://127.0.0.1:8000/user/PlaceOrder",{
                   method:'POST',
                   headers: {
@@ -68,7 +86,7 @@ function ShoppingCart() {
                 });
                 const data = await response.json();
                 if(data === "successfull"){
-                    toast.success("Order Placed Successfully",{
+                    toast.success("Order Placed Successfully (All your ebooks will be available in your account)",{
                         position:toast.POSITION.TOP_RIGHT,
                     });
                     setCardClass("hide");
@@ -106,6 +124,7 @@ function ShoppingCart() {
             </TableRow>
           </TableHead>
           <TableBody>
+              <h4 className='empty-cart-head'>{Book.length === 0?"Currently no items in cart":""}</h4>
             {Book.map((row, index) => (
               <TableRow
                 key={row.name}
@@ -115,7 +134,7 @@ function ShoppingCart() {
                   {row.Name}
                 </TableCell>
                 <TableCell align="right" sx={{borderBottom: "3px solid #3c2e27"}}>{row.Book_Type==="P"?row.Price:row.Price*0.3}</TableCell>
-                <TableCell align="right" sx={{borderBottom: "3px solid #3c2e27"}}>{row.Book_Type==="P"?(row.Price)*(row.Quantity):(row.Price)*(row.Quantity)*0.3}</TableCell>
+                <TableCell align="right" sx={{borderBottom: "3px solid #3c2e27"}}>{row.Book_Type==="P"?(row.Price)*(row.Quantity):Math.round((row.Price)*(row.Quantity)*0.3)}</TableCell>
                 <TableCell align="right" sx={{borderBottom: "3px solid #3c2e27"}}>{row.Book_Type === "P"?"No":"Yes"}</TableCell>
                 <TableCell align="right" sx={{borderBottom: "3px solid #3c2e27"}}>
                   {row.Book_Type==="P" ? <QuantityInput quantity={row.Quantity} quantityChange={(val) => { quantityChange(index, val,row.max_qty);}}/>:"Ebook Quantity fixed to 1"}
@@ -155,11 +174,11 @@ function ShoppingCart() {
                 <input placeholder='Name On Card'onChange={(e)=>{setCardName(e.target.value)}}/>
                 <input placeholder='Card Number'onChange={(e)=>{setCardNum(e.target.value)}}/>
                 <input placeholder='CVV'onChange={(e)=>{setCvv(e.target.value)}}/>
-                <input placeholder='Expiry Date'onChange={(e)=>{setExpiryDate(e.target.value)}}/>
+                <input placeholder='Expiry Date(YYYY/MM/DD)'onChange={(e)=>{setExpiryDate(e.target.value)}}/>
            </div>
         </div>
         <div className='Ch-btn'>
-            <button onClick={OrderPlace}>CheckOut</button>
+            <button onClick={OrderPlace}>Place Order</button>
         </div>
     </div>
   )

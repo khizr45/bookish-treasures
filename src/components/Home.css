@@ -253,3 +253,17 @@
     border: #3c2e27 2px solid;
     border-radius: 5px;
 }
+
+.message_box_btn{
+    height: 5rem;
+    width: 6rem;
+    margin-bottom: 3rem;
+    margin-left: 1rem;
+}
+
+.message_box_btn_main{
+    background-color: #cfa67c;
+    border: none;
+    cursor: pointer;
+    height: 2rem;
+}

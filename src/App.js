@@ -9,6 +9,8 @@ import Account_Info from './components/Account_Info';
 import { Provider } from 'react-redux';
 import {store} from './app/store';
 import ShoppingCart from './components/ShoppingCart'
+import ChatBox from './components/ChatBox';
+import { SingleChat } from './components/messages/SingleChat';
 function App() {
   const router = createBrowserRouter ([{
     path:'/',
@@ -33,12 +35,18 @@ function App() {
   {
     path:"/user/Cart",
     element:<ShoppingCart />
+  },
+  {
+    path:"/chatBox",
+    element:<SingleChat/>
   }
 ])
   return (
+      <RouterProvider router={router}>
     <Provider store={store}>
-      <RouterProvider router={router}></RouterProvider>
+
     </Provider>
+      </RouterProvider>
   );
 }
 

@@ -64,7 +64,10 @@ export const NavBar = (props) => {
     }
   return <navbar>
     <div className='nbar'>
-      <img src='/images/logo_bt_Home.jpg' className='dd-btn' onClick={()=>{navigate("/")}}/>
+      <div>
+        <img src='/images/logo_bt_Home.jpg' className='dd-btn' onClick={()=>{navigate("/")}}/>
+        {user === '' ? '' : <button onClick={()=>{navigate('/chatBox')}} className='message_box_btn_main'><img src='/images/message_box.png'className='message_box_btn'/></button>}
+      </div>
       {/* <input className='SearchBar' placeholder='Search' onChange={Searches}></input> */}
       <div className='nbarRight'>
         <button className='LogS-btn' onClick={CheckUser}>{user===""?"Login/SignUp":user}</button>

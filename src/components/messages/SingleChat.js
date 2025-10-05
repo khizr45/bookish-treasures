@@ -30,7 +30,7 @@ export const SingleChat = () => {
     })
     const [SenderMessage,setSenderMessage] = useState('')
     console.log(user)
-    async function getMessages(){
+    const getMessages = useCallback(async () => {
       const response = await fetch("https://bookish-treasures-backend.onrender.com/get/message/history",{
               method:'POST',
               headers: {
@@ -40,20 +40,20 @@ export const SingleChat = () => {
           });
 
       const data = await response.json()
-      if(data.length != 0){
+      if(data.length !== 0){
         setMess([{sender:data[0].sender, message:data[0].message}])
         for(let i=1;i<data.length;i++){
           setMess(prevItems=>[...prevItems,{sender:data[i].sender,message: data[i].message}])
         }
       }
-    }
+    }, [user])
     useEffect(()=>{
             socket.emit('userOnline',user)
             getMessages()
-    },[])
+    },[socket, user, getMessages])
 
     function newSenderMessage(){
-        if(SenderMessage!=''){
+        if(SenderMessage!==''){
             setMess(prevItems => [...prevItems,{sender:user,message:SenderMessage}])
             socket.emit('userSendMessage',SenderMessage,user,'admin')
             setSenderMessage('')

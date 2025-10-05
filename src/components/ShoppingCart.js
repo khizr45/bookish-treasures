@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { UseSelector, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { NavBar } from './Home';
 import  "./ShoppingCart.css";
 import { Table, TableContainer } from "@mui/material";
@@ -10,13 +10,11 @@ import TableRow from "@mui/material/TableRow";
 import QuantityInput from './QuantityPicker';
 import { UpdateQuantity } from '../app/features/Cart/CartSlice';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
-import { Form } from 'react-router-dom';
+import Select from '@mui/material/Select';
 import { RemoveBook } from '../app/features/Cart/CartSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import { ClearCart } from '../app/features/Cart/CartSlice';
@@ -46,10 +44,6 @@ function ShoppingCart() {
             dispatch(UpdateQuantity({index, quantity}))
         }
     };
-    async function FindPrice(index){
-        const isbn = Book[index].isbn
-        return isbn;
-    }
     const dateRegex = /^(\d{4})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
     async function OrderPlace(){
         if(user === ""){

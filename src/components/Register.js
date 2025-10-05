@@ -85,7 +85,7 @@ function Register() {
             <Header/>
             <div className='containers-register'>
                 <div className='Mid-register'>
-                    <img src='/images/login-cover2.jpeg' className='Login-cover-register'/>
+                    <img src='/images/login-cover2.jpeg' className='Login-cover-register' alt='Register cover'/>
                     <div className='Right-Container-register'>
                         <h3>Register User</h3>
                         <input placeholder='Full Name' onChange={(e)=>{setFname(e.target.value)}}/>

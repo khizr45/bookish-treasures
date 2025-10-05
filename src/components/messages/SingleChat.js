@@ -24,14 +24,14 @@ export const SingleChat = () => {
     let user = useSelector(state=>state.user)
     const [mess,setMess] = useState([
     ])
-    const socket = io("http://localhost:8000")
+    const socket = io("https://bookish-treasures-backend.onrender.com/")
     socket.on('newMess',(newMessage,send,recv)=>{
         setMess(prevItems => [...prevItems,{sender:'admin',message:newMessage}])
     })
     const [SenderMessage,setSenderMessage] = useState('')
     console.log(user)
     async function getMessages(){
-      const response = await fetch("http://127.0.0.1:8000/get/message/history",{
+      const response = await fetch("https://bookish-treasures-backend.onrender.com/get/message/history",{
               method:'POST',
               headers: {
                   "Content-Type": "application/json",

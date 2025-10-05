@@ -13,7 +13,7 @@ function Home(props) {
   const [AllBook , setBooks] = useState([]);
   const [searchOptions, setSearchOptions] = useState([]);
   async function FindBooks(){
-    const response = await fetch("http://127.0.0.1:8000/getBooks");
+    const response = await fetch("https://bookish-treasures-backend.onrender.com/getBooks");
     const data = await response.json();
     setBooks(data);
   }
@@ -125,7 +125,7 @@ export const SecondaryNav = (props) => {
     if(value === "Genres" && selectAuthor === "Authors"){
       props.reload();
     }else{
-      const response = await fetch("http://127.0.0.1:8000/book/filterGenre",{
+      const response = await fetch("https://bookish-treasures-backend.onrender.com/book/filterGenre",{
           method:'POST',
           headers: {
               "Content-Type": "application/json",
@@ -142,7 +142,7 @@ export const SecondaryNav = (props) => {
     if(value === "Authors" && selectGenre === "Genres"){
       props.reload();
     }else{
-      const response = await fetch("http://127.0.0.1:8000/book/filterAuthor",{
+      const response = await fetch("https://bookish-treasures-backend.onrender.com/book/filterAuthor",{
           method:'POST',
           headers: {
               "Content-Type": "application/json",
@@ -154,12 +154,12 @@ export const SecondaryNav = (props) => {
     }
   }
   async function FindGenre(){
-    const response = await fetch("http://127.0.0.1:8000/book/genre");
+    const response = await fetch("https://bookish-treasures-backend.onrender.com/book/genre");
     const data = await response.json();
     setGenres(data);
   }
   async function FindAuthors(){
-    const response = await fetch("http://127.0.0.1:8000/book/authors");
+    const response = await fetch("https://bookish-treasures-backend.onrender.com/book/authors");
     const data = await response.json();
     setAuthors(data);
   }

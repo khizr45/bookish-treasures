@@ -44,7 +44,7 @@ function Register() {
                         position:toast.POSITION.TOP_RIGHT,
                     })
                 }else{
-                    const response = await fetch("http://127.0.0.1:8000/auth/User",{
+                    const response = await fetch("https://bookish-treasures-backend.onrender.com/auth/User",{
                         method:'POST',
                         headers: {
                             "Content-Type": "application/json",
@@ -57,7 +57,7 @@ function Register() {
                             position:toast.POSITION.TOP_RIGHT,
                         })
                     }else{
-                        const response = await fetch("http://127.0.0.1:8000/user/register",{
+                        const response = await fetch("https://bookish-treasures-backend.onrender.com/user/register",{
                             method:'POST',
                             headers: {
                                 "Content-Type": "application/json",

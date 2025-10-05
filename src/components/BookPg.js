@@ -34,7 +34,7 @@ function BookPg(props) {
     const [II,setII] = useState("");
     const [Reviews,setReviews] = useState([]);
     async function FindBook(){
-        const response = await fetch("http://127.0.0.1:8000/Get/Book/Isbn",{
+        const response = await fetch("https://bookish-treasures-backend.onrender.com/Get/Book/Isbn",{
               method:'POST',
               headers: {
                   "Content-Type": "application/json",
@@ -54,7 +54,7 @@ function BookPg(props) {
             setII(data[0].book_isbn);
           }else{
             let isbn = ISBN
-            const response3 = await fetch("http://127.0.0.1:8000/GetBook/Isbn",{
+            const response3 = await fetch("https://bookish-treasures-backend.onrender.com/GetBook/Isbn",{
               method:'POST',
               headers: {
                   "Content-Type": "application/json",
@@ -74,7 +74,7 @@ function BookPg(props) {
 
           }
           window.scrollTo({ top: 0, behavior: 'auto' });
-          const response2 = await fetch("http://127.0.0.1:8000/Get/Book/Review",{
+          const response2 = await fetch("https://bookish-treasures-backend.onrender.com/Get/Book/Review",{
             method:'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -237,7 +237,7 @@ export const CustomerReviewTaking=(props)=>{
         }else{
             const user = props.u;
             const isbn = props.i;
-            const response = await fetch("http://127.0.0.1:8000/user/review",{
+            const response = await fetch("https://bookish-treasures-backend.onrender.com/user/review",{
                 method:'POST',
                 headers: {
                     "Content-Type": "application/json",

@@ -11,7 +11,7 @@ function ChatBox() {
     let user_id_1 = 'khiz'
     let user_id_2 = 'khizar'
     function messagePass(){
-        const socket = io('http://localhost:8000')
+        const socket = io('https://bookish-treasures-backend.onrender.com/')
         socket.emit('userOnline',user_id_1)
         socket.emit('userOnline',user_id_2)
         socket.on('newMess',(mess,send,recv)=>{

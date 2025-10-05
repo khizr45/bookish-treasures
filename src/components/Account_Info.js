@@ -20,7 +20,7 @@ function Account_Info() {
     const [PendingItems,setPendingItems] = useState([]);
     const [EbookItems,setEbookItems] = useState([]);
     async function FindDets(){
-        const response = await fetch("http://127.0.0.1:8000/Get/user/username",{
+        const response = await fetch("https://bookish-treasures-backend.onrender.com/Get/user/username",{
             method:'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -36,7 +36,7 @@ function Account_Info() {
     async function FindOrders(){
         let pending = [];
         let ebook = [];
-        const response = await fetch("http://127.0.0.1:8000/Get/user/orders",{
+        const response = await fetch("https://bookish-treasures-backend.onrender.com/Get/user/orders",{
             method:'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -109,7 +109,7 @@ export const PendingOrders= (props)=>{
     const [Payment,setPayment] = useState("");
     async function  findTitle(){
         const isbn = props.book;
-        const response = await fetch("http://127.0.0.1:8000/GetBook/Isbn",{
+        const response = await fetch("https://bookish-treasures-backend.onrender.com/GetBook/Isbn",{
             method:'POST',
             headers: {
                 "Content-Type": "application/json",
@@ -131,7 +131,7 @@ export const PendingOrders= (props)=>{
             });
         }else{
             const oi = props.id
-            const response = await fetch("http://127.0.0.1:8000/Cancel/Order",{
+            const response = await fetch("https://bookish-treasures-backend.onrender.com/Cancel/Order",{
                 method:'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -167,7 +167,7 @@ export const EbookItem = (props)=>{
     const [ebook_source,setsource] = useState("");
     async function  findTitle(){
         const isbn = props.book;
-        const response = await fetch("http://127.0.0.1:8000/GetBook/Isbn",{
+        const response = await fetch("https://bookish-treasures-backend.onrender.com/GetBook/Isbn",{
             method:'POST',
             headers: {
                 "Content-Type": "application/json",

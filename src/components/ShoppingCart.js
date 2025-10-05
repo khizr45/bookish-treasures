@@ -77,7 +77,7 @@ function ShoppingCart() {
               })
             }
             else{
-                const response = await fetch("http://127.0.0.1:8000/user/PlaceOrder",{
+                const response = await fetch("https://bookish-treasures-backend.onrender.com/user/PlaceOrder",{
                   method:'POST',
                   headers: {
                       "Content-Type": "application/json",

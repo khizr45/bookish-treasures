@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import styles from './SingleChat.module.css';
 import SendIcon from '@mui/icons-material/Send';
 import { useSelector } from 'react-redux';

@@ -3,7 +3,6 @@ import './Login.css';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from 'react-router-dom';
-import { useParams,useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { newUser } from '../app/features/Cart/CartSlice';
 
@@ -54,7 +53,7 @@ function Login() {
         <Header/>
         <div className='containers' data-testid='login'>
             <div className='Mid'>
-                <img src='/images/login-cover2.jpeg' className='Login-cover'/>
+                <img src='/images/login-cover2.jpeg' alt='Login cover' className='Login-cover'/>
                 <div className='Right-Container'>
                   <h3>User Login</h3>
                   <input placeholder='Username' onChange={(e)=>{setUN(e.target.value)}}/>
@@ -71,7 +70,7 @@ export const Header = ()=>{
 
   return <header>
     <div className='head-container'>
-          <img src='/images/logo_Login.jpg' className='Head' />
+          <img src='/images/logo_Login.jpg' alt='Bookish Treasures logo' className='Head' />
         </div>
   </header>
 

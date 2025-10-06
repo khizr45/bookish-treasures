@@ -2,16 +2,10 @@ import React,{useState , useEffect} from 'react'
 import './Home.css'
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useNavigate } from 'react-router-dom';
-import { useParams,useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { newUser } from '../app/features/Cart/CartSlice';
-import { UseSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Home(props) {
-  const dispatch = useDispatch();
-  const [searchActive , setSearchActive] = useState("hide")
   const [AllBook , setBooks] = useState([]);
-  const [searchOptions, setSearchOptions] = useState([]);
   async function FindBooks(){
     const response = await fetch("https://bookish-treasures-backend.onrender.com/getBooks");
     const data = await response.json();
@@ -44,17 +38,6 @@ function Home(props) {
 export const NavBar = (props) => {
   const user = useSelector(state=>state.user);
   const navigate = useNavigate();
-  const [DDMenuClass,UpdateDDMenu] = useState("hide");
-  const [content , setContent] = useState("");
-  function OpenDDMenu(){
-    UpdateDDMenu("DDMenu")
-  }
-  function CloseDDMenu(){
-    UpdateDDMenu("hide");
-  }
-  function Searches(e){
-      setContent(e.target.value)
-    }
     function CheckUser(){
       if(user === ""){
         navigate("/user/Login");
@@ -65,13 +48,13 @@ export const NavBar = (props) => {
   return <navbar>
     <div className='nbar'>
       <div>
-        <img src='/images/logo_bt_Home.jpg' className='dd-btn' onClick={()=>{navigate("/")}}/>
-        {user === '' ? '' : <button onClick={()=>{navigate('/chatBox')}} className='message_box_btn_main'><img src='/images/message_box.png'className='message_box_btn'/></button>}
+        <img src='/images/logo_bt_Home.jpg' alt='Bookish Treasures home' className='dd-btn' onClick={()=>{navigate("/")}}/>
+        {user === '' ? '' : <button onClick={()=>{navigate('/chatBox')}} className='message_box_btn_main'><img src='/images/message_box.png' alt='Messages' className='message_box_btn'/></button>}
       </div>
       {/* <input className='SearchBar' placeholder='Search' onChange={Searches}></input> */}
       <div className='nbarRight'>
         <button className='LogS-btn' onClick={CheckUser}>{user===""?"Login/SignUp":user}</button>
-        <button className='cart-btn' onClick={()=>{navigate("/user/Cart")}}><img src='/images/shop_cart_logo.png' className='cart-logo'/></button>
+        <button className='cart-btn' onClick={()=>{navigate("/user/Cart")}}><img src='/images/shop_cart_logo.png' alt='Cart' className='cart-logo'/></button>
       </div>
       
     </div>
@@ -91,7 +74,7 @@ export const Offers = () => {
   }
   return <offers>
     <div className='OffersMain'>
-      <img src={offers[offerNow]} className='Offer' id='off'/>
+      <img src={offers[offerNow]} alt={`Offer ${offerNow+1}`} className='Offer' id='off'/>
       <button className='Slider-Btn' onClick={NewOffer}><ArrowForwardIcon fontSize='large' /></button>
     </div>
   </offers>
@@ -102,7 +85,7 @@ export const BookBox = (props) => {
   return(
     <div className='bb' onClick={()=>{navigate("/BkPg",{state:{ISBN:props.isbn}})}}>
       <div className='image'>
-        <img src={props.imageSrc} className='poster'/>
+        <img src={props.imageSrc} alt={`${props.title} cover`} className='poster'/>
       </div>
       <div className='book-Dets'>
         <h3 className='Title'>{props.title}</h3>

@@ -1,15 +1,14 @@
 import React from 'react'
-import { useLocation } from 'react-router-dom'
 import { NavBar } from './Home';
 import "./Account_info.css";
-import { useEffect,useState } from 'react';
+import { useEffect,useState, useCallback } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import { UseSelector, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { newUser } from '../app/features/Cart/CartSlice';
 
-function Account_Info() {
+function AccountInfo() {
     const UserName = useSelector(state=>state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,7 +18,7 @@ function Account_Info() {
     const [Email,setEmail] = useState("");
     const [PendingItems,setPendingItems] = useState([]);
     const [EbookItems,setEbookItems] = useState([]);
-    async function FindDets(){
+    const FindDets = useCallback(async ()=>{
         const response = await fetch("https://bookish-treasures-backend.onrender.com/Get/user/username",{
             method:'POST',
             headers: {
@@ -32,8 +31,8 @@ function Account_Info() {
         setFname(data[0].name);
         setEmail(data[0].email);
         setPno(data[0].phone_number);
-    }
-    async function FindOrders(){
+    },[UserName]);
+    const FindOrders = useCallback(async ()=>{
         let pending = [];
         let ebook = [];
         const response = await fetch("https://bookish-treasures-backend.onrender.com/Get/user/orders",{
@@ -48,20 +47,20 @@ function Account_Info() {
             if(data[i].status === "P"){
                 pending.push(data[i]);
             }else if(data[i].status==="F" && data[i].type_id === 2){
-                let f = 0
+                let found = 0
                 ebook.forEach((elements,index)=>{
                     if(ebook[index].book_isbn === data[i].book_isbn){
-                        f = 1;
+                        found = 1;
                     }
                 })
-                if(f === 0){
+                if(found === 0){
                     ebook.push(data[i]);
                 }
             }
         }
         setEbookItems(ebook);
         setPendingItems(pending);
-    }
+    },[UserName]);
     function LogOut(){
         dispatch(newUser(""));
         navigate("/");
@@ -69,7 +68,7 @@ function Account_Info() {
     useEffect(()=>{
         FindDets();
         FindOrders();
-    },[])
+    },[FindDets, FindOrders])
   return (
     <div className='Account-main'>
         <ToastContainer />
@@ -107,7 +106,7 @@ function Account_Info() {
 export const PendingOrders= (props)=>{
     const [Title , setTitle] = useState("");
     const [Payment,setPayment] = useState("");
-    async function  findTitle(){
+    const findTitle = useCallback(async ()=>{
         const isbn = props.book;
         const response = await fetch("https://bookish-treasures-backend.onrender.com/GetBook/Isbn",{
             method:'POST',
@@ -123,7 +122,7 @@ export const PendingOrders= (props)=>{
         }else{
             setPayment("Paid");
         }
-    }
+    },[props.book, props.pay])
     async function CancelOrder(){
         if(Payment === "Paid"){
             toast.error("Order Paid Cannot Cancel",{
@@ -150,7 +149,7 @@ export const PendingOrders= (props)=>{
     }
     useEffect(()=>{
         findTitle();
-    },[])
+    },[findTitle])
     return(
         <div className='pending-item'>
             <div>
@@ -165,7 +164,7 @@ export const PendingOrders= (props)=>{
 export const EbookItem = (props)=>{
     const [Title , setTitle] = useState("");
     const [ebook_source,setsource] = useState("");
-    async function  findTitle(){
+    const findTitle = useCallback(async ()=>{
         const isbn = props.book;
         const response = await fetch("https://bookish-treasures-backend.onrender.com/GetBook/Isbn",{
             method:'POST',
@@ -177,10 +176,10 @@ export const EbookItem = (props)=>{
         const data = await response.json();
         setTitle(data[0].title);
         setsource(data[0].ebook_source);
-    }
+    },[props.book])
     useEffect(()=>{
         findTitle();
-    },[])
+    },[findTitle])
     return(
         <div className='ebook-item'>
             <h4>Book: {Title}</h4>
@@ -189,4 +188,4 @@ export const EbookItem = (props)=>{
     )
 }
 
-export default Account_Info
+export default AccountInfo

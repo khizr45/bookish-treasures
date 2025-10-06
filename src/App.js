@@ -1,15 +1,14 @@
-import React , {useState} from 'react'
-import { BrowserRouter as Router, Route, Switch, createBrowserRouter, RouterProvider } from 'react-router-dom';
+import React from 'react'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login';
 import Home from './components/Home';
 import BookPg from './components/BookPg';
 import Register from './components/Register';
-import Account_Info from './components/Account_Info';
+import AccountInfo from './components/Account_Info';
 import { Provider } from 'react-redux';
 import {store} from './app/store';
 import ShoppingCart from './components/ShoppingCart'
-import ChatBox from './components/ChatBox';
 import { SingleChat } from './components/messages/SingleChat';
 function App() {
   const router = createBrowserRouter ([{
@@ -30,7 +29,7 @@ function App() {
   },
   {
     path:"/user/account",
-    element:<Account_Info />
+    element:<AccountInfo />
   },
   {
     path:"/user/Cart",

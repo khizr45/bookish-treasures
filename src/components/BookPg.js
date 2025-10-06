@@ -218,9 +218,6 @@ export const CustomerReview=(props)=>{
 export const CustomerReviewTaking=(props)=>{
     const [ratingValue,setRatingValue] = useState(0);
     const [reviewContent,setReviewContent] = useState("");
-    function onHandleChange(e){
-
-    }
     async function SubmitReview(){
         props.ccFunc("hide");
         if(ratingValue === 0){

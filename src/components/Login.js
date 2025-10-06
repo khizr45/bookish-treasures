@@ -7,7 +7,6 @@ import { useDispatch } from 'react-redux';
 import { newUser } from '../app/features/Cart/CartSlice';
 
 function Login() {
-  const [IsLogin , setIsLogin] = useState(false)
   const navigate = useNavigate();
   const [UN , setUN] = useState("");
   const [Pass,setPass] = useState("");
@@ -32,7 +31,6 @@ function Login() {
       const data =  await response.json();
       if(data.length > 0){
         if(Pass === data[0].password){
-          setIsLogin(true);
           dispatch(newUser(UN));
           navigate('/');
         }else{

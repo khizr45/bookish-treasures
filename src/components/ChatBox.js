@@ -1,25 +1,8 @@
-import React , {useState} from 'react'
-import io from 'socket.io-client'
+import React from 'react'
 import './ChatBox.css'
-import { NavBar } from './Home';
 import {Inbox} from './messages/Inbox'
 
 function ChatBox() {
-    const [message,setMessage] = useState('')
-    const [sender,setSender] = useState('')
-    const [Receiver,setRecv] = useState('')
-    let user_id_1 = 'khiz'
-    let user_id_2 = 'khizar'
-    function messagePass(){
-        const socket = io('https://bookish-treasures-backend.onrender.com/')
-        socket.emit('userOnline',user_id_1)
-        socket.emit('userOnline',user_id_2)
-        socket.on('newMess',(mess,send,recv)=>{
-          setMessage(mess)
-          setSender(send)
-          setRecv(recv)
-        })
-    }
     return (
     <div>
       {/* <NavBar/>

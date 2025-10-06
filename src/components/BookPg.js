@@ -1,17 +1,10 @@
 import React, { useState,useEffect } from 'react'
 import './Bookpg.css'
 import { NavBar } from './Home'
-import { SecondaryNav } from './Home'
-import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
-import Typography from '@mui/material/Typography';
 import { useLocation } from 'react-router-dom';
-import { Book } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
 import { AddBook } from '../app/features/Cart/CartSlice';
-import { ClearCart } from '../app/features/Cart/CartSlice';
-import { newUser } from '../app/features/Cart/CartSlice';
-import { UseSelector } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 
 let qt = 1;
@@ -33,65 +26,65 @@ function BookPg(props) {
     const [genre,setGenre] = useState("");
     const [II,setII] = useState("");
     const [Reviews,setReviews] = useState([]);
-    async function FindBook(){
-        const response = await fetch("https://bookish-treasures-backend.onrender.com/Get/Book/Isbn",{
-              method:'POST',
-              headers: {
-                  "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ISBN})
-          });
-          const data = await response.json();
-          if(data.length != 0){
-            setTitle(data[0].title);
-            setAuthor(data[0].author);
-            setRating(data[0].average_rating);
-            setPrice(data[0].price);
-            setQty(data[0].quantity);
-            setImageSrc(data[0].image_source);
-            setPublishDate(data[0].publication_date);
-            setGenre(data[0].genre);
-            setII(data[0].book_isbn);
-          }else{
-            let isbn = ISBN
-            const response3 = await fetch("https://bookish-treasures-backend.onrender.com/GetBook/Isbn",{
-              method:'POST',
-              headers: {
-                  "Content-Type": "application/json",
-              },
-                body: JSON.stringify({isbn})
-            });
-            const data3 = await response3.json();
-            console.log(data3);
-            setTitle(data3[0].title);
-            setAuthor(data3[0].author);
-            setPrice(data3[0].price);
-            setQty(data3[0].quantity);
-            setImageSrc(data3[0].image_source);
-            setPublishDate(data3[0].publication_date);
-            setGenre(data3[0].genre);
-            setII(data3[0].book_isbn);
-
-          }
-          window.scrollTo({ top: 0, behavior: 'auto' });
-          const response2 = await fetch("https://bookish-treasures-backend.onrender.com/Get/Book/Review",{
-            method:'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ISBN})
-        });
-        const data2 = await response2.json();
-        setReviews(data2);
-    }
     useEffect(()=>{
-        FindBook();
-    },[])
+        async function fetchBookAndReviews(){
+            const response = await fetch("https://bookish-treasures-backend.onrender.com/Get/Book/Isbn",{
+                  method:'POST',
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                  body: JSON.stringify({ISBN})
+              });
+              const data = await response.json();
+              if(data.length !== 0){
+                setTitle(data[0].title);
+                setAuthor(data[0].author);
+                setRating(data[0].average_rating);
+                setPrice(data[0].price);
+                setQty(data[0].quantity);
+                setImageSrc(data[0].image_source);
+                setPublishDate(data[0].publication_date);
+                setGenre(data[0].genre);
+                setII(data[0].book_isbn);
+              }else{
+                let isbn = ISBN
+                const response3 = await fetch("https://bookish-treasures-backend.onrender.com/GetBook/Isbn",{
+                  method:'POST',
+                  headers: {
+                      "Content-Type": "application/json",
+                  },
+                    body: JSON.stringify({isbn})
+                });
+                const data3 = await response3.json();
+                console.log(data3);
+                setTitle(data3[0].title);
+                setAuthor(data3[0].author);
+                setPrice(data3[0].price);
+                setQty(data3[0].quantity);
+                setImageSrc(data3[0].image_source);
+                setPublishDate(data3[0].publication_date);
+                setGenre(data3[0].genre);
+                setII(data3[0].book_isbn);
+
+              }
+              window.scrollTo({ top: 0, behavior: 'auto' });
+              const response2 = await fetch("https://bookish-treasures-backend.onrender.com/Get/Book/Review",{
+                method:'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ISBN})
+            });
+            const data2 = await response2.json();
+            setReviews(data2);
+        }
+        fetchBookAndReviews();
+    },[ISBN])
     const [cc , setCC] = useState("desc cr")
     const [cc2 , setCC2] = useState("desc")
     const [pCC , setpCC] = useState("descrip")
     const [pCC2 , setpCC2] = useState("hide")
-    const [Book_type_Btns , setBookTypeBtns] = useState("hide");
+    
     function takeClass(){
         setCC("desc cr")
         setCC2("desc")
@@ -144,7 +137,7 @@ function BookPg(props) {
         <ToastContainer />
       <NavBar />
       <div className='book-dets'>
-        <img src={image_src} className='book-img' />
+        <img src={image_src} alt={`${Title} cover`} className='book-img' />
         <div className='book-prop'>
             <h1 className='title'>{Title}</h1>
             <h3 className='aut'>BY: {Author}</h3>
@@ -191,14 +184,14 @@ export const StarRating = (props) =>{
 export const Iterator = (props) => {
     const [value , setValue] = useState(1);
     function QtyLess(){
-        if(value != 1){
+        if(value !== 1){
             qt = value - 1;
             setValue(qt)
         }
     }
 
     function QtyUp(){
-        if(value != props.max){
+        if(value !== props.max){
             qt = value+1;
             setValue(qt);
         }
@@ -225,9 +218,6 @@ export const CustomerReview=(props)=>{
 export const CustomerReviewTaking=(props)=>{
     const [ratingValue,setRatingValue] = useState(0);
     const [reviewContent,setReviewContent] = useState("");
-    function onHandleChange(e){
-
-    }
     async function SubmitReview(){
         props.ccFunc("hide");
         if(ratingValue === 0){
